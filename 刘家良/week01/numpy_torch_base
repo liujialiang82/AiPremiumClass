@@ -1,0 +1,168 @@
+ 
+import numpy as np
+import torch
+
+ 
+a = [1,2,3]
+b = np.array(a)
+b
+
+ 
+a = np.array([(1,2,3),(4,5,6),(7,8,9)])
+print(a)
+
+a= a.T
+print(a)
+
+ 
+a = np.zeros((2,3), dtype =  float)
+print(a)
+b = np.ones((2,3))
+b
+
+
+ 
+# 等差数列
+a2 = np.arange(1,5,0.5)
+a2
+
+ 
+a3 = np.eye(3)
+a3
+
+ 
+a4 = np.random.random(5)
+
+ 
+a5 = np.array([(1,2), (3,4), (5,6)])
+print(a5[:,0])
+for i,j in a5:
+    print(i,j)
+
+ 
+a7 =  np.arange(1,10)
+print(a7)
+print(a7.shape)
+
+a7 = a7.reshape(3,3)
+print(a7)
+print(a7.shape)
+
+ 
+a8 = np.array([(1,2),(3,4),(5,6)])
+print(a8.shape)
+print(a8)
+
+a8 = a8.reshape(3,2,1)
+print(a8)
+
+a8 = a8[:,np.newaxis,:,:]
+a8.shape
+print(a8)
+
+ 
+a = np.ones((2,2))
+b = np.array([(-1,1),(-1,1)])
+print(a)
+print(b)
+print(a+b)
+
+ 
+a.sum()
+
+
+ 
+b.prod()
+
+
+ 
+a1 = np.array([[1,3],[2,4]])
+a2 = np.array([[2,3],[1,4]])
+print(a1)
+print(a2)
+
+print('mul:\n', a1 * a2)
+
+re = np.dot(a1,a2)
+print('dot:\n', re)
+
+
+ 
+a = np.array([[1,2],[3,4],[5,6],[7,8],])
+b = np.array([-1,1])
+a + b
+
+ 
+a = np.array([[1,2,3],[3,4,5]])
+a.shape
+
+ 
+data = torch.tensor([[1,2],[3,4]])
+data
+
+ 
+np_array = np.array([1,2])
+data = torch.from_numpy(np_array)
+data
+
+ 
+data3 = torch.ones_like(data)
+data3
+
+ 
+tensor = torch.rand(3,4)
+
+print(f"Tensor: {tensor}")
+print(f"Shape of tensor: {tensor.shape}")
+print(f"Device tensor is stored on：{tensor.device}")
+
+ 
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+    tensor = tensor.to(device) 
+    print(tensor.device)
+
+
+
+
+ 
+tensor = torch.tensor([[1,2], [5,6]])
+print(f"First row: {tensor[0]}")
+print(f"First column: {tensor[:, 0]}")
+print(f"Last column: {tensor[..., -1]}")
+#tensor[:,1] = 0
+print(tensor)
+print(tensor.reshape(1,2,2))
+
+ 
+tensor = torch.tensor([[1,2],[3,4]])
+t1 = torch.cat([tensor, tensor, tensor], dim=1)
+print(t1)
+print(tensor.shape)
+print(t1.shape)
+
+ 
+ts = torch.arange(1,10, dtype=torch.float32).reshape(3,3)
+ts =  ts.to(torch.device('cuda'))
+print('ts:', ts)
+print('ts.T:',ts.T)
+
+y1=ts@ts.T
+y2=ts.matmul(ts.T)
+print('y1:',y1)
+print('y2:',y2)
+
+y3=torch.rand_like(ts)
+torch.matmul(ts, ts.T, out=y3)
+print('y3:',y3)
+
+
+
+ 
+agg=ts.sum()
+print(ts.device)
+agg_item=agg.item()
+print(agg_item, type(agg_item))
+
+
+
